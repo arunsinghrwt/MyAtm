@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="atmBalance"
+            type="com.arun.myatm.model.AtmBalanceModel" />
+
+
+        <variable
+            name="lastTransaction"
+            type="com.arun.myatm.model.TransactionListModel" />
+    </data>
+
+
+    <ScrollView
+        android:padding="12dp"
+        android:background="@color/teal_200"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/atm_amount_view"
+        style="@style/CardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="ATM Amt."
+                    android:textAlignment="textStart">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.100"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.200"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.500"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.2000"
+                    android:textAlignment="center">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/atm_amt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{atmBalance.atmAmt}"
+                    android:textAlignment="center"
+                    android:textSize="12dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/hundred_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{atmBalance.oneH}"
+                    android:textAlignment="center"
+                    android:textSize="12dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/twoHund_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{atmBalance.twoH}"
+                    android:textAlignment="center"
+                    android:textSize="12dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/five_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{atmBalance.fiveH}"
+                    android:textAlignment="center"
+                    android:textSize="12dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/twoThous_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{atmBalance.twok}"
+                    android:textAlignment="center"
+                    android:textSize="12dp">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+       android:layout_below="@+id/atm_amount_view"
+        android:id="@+id/enter_amt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your withdraw amount"
+            android:inputType="phone"
+            android:maxLength="11"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_withdraw"
+        style="@style/ButtonRoundSolid"
+        android:layout_below="@+id/enter_amt"
+        android:layout_margin="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Withdraw" />
+
+
+    <TextView
+        android:id="@+id/last_transaction_view"
+        style="@style/TextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_withdraw"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Last Transactions"
+        android:textSize="16dp">
+
+    </TextView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/last_transaction"
+        style="@style/CardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/last_transaction_view"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/error_trans"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:text="No Transaction data"
+            android:textAlignment="center"
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent">
+
+        </TextView>
+        <LinearLayout
+            android:id="@+id/view_trans"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+               
+                    android:text="ATM Amt."
+                    android:textAlignment="textStart">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rs.100"
+                    android:padding="5dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.200"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.500"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.2000"
+                    android:textAlignment="center">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/last_amt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{lastTransaction.atmAmt}"
+                    android:textSize="12dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/last_oneHund_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{lastTransaction.oneH}"
+                    android:textSize="12dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/last_twoHund_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{lastTransaction.twoH}"
+                    android:textSize="12dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/last_fiveHnd_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{lastTransaction.fiveH}"
+                    android:textSize="12dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/last_twoThous_count"
+                    android:layout_width="match_parent"
+                    android:text="@{lastTransaction.twok}"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/Your_transaction"
+        style="@style/TextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/last_transaction"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="Your Transactions"
+        android:textSize="16dp">
+
+    </TextView>
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/Your_transaction"
+        style="@style/CardViewStyle"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="ATM Amt."
+                    android:textAlignment="textStart">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rs.100"
+                    android:padding="5dp"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.200"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.500"
+                    android:textAlignment="center">
+
+                </TextView>
+
+                <TextView
+                    style="@style/TextLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:text="Rs.2000"
+                    android:textAlignment="center">
+
+                </TextView>
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/error_your_trans"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:text="No Transaction data"
+                android:textAlignment="center"
+                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent">
+
+            </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transaction_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:visibility="gone"
+                android:clipToPadding="false"/>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
+    </ScrollView>
+    </layout>
